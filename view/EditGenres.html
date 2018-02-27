@@ -1,0 +1,10 @@
+<form name="myForm">
+    <div class="form-group">
+        <label for="input_8">Title</label>
+        <input id="input_8" type="text" class="form-control" ng-model="newGenre.title" name="text" ng-pattern="/^[a-zA-Zа-яА-Я]{1,30}$/" required>
+        <span class="text" ng-show="myForm.text.$error.pattern">Only letters are allowed</span><br/>
+        <span class="text" ng-show="myForm.text.$error.required">This field is required!</span><br/>
+    </div>
+    <button class="btn btn-success"ng-click="saveGenre(newGenre)" type="submit" ng-disabled="myForm.$invalid"><a href="#!genres">Save</a></button>
+    <button class="btn btn-success"ng-click="cancel()"><a href="#!genres">Cancel</a></button>
+</form>

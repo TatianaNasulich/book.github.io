@@ -1,0 +1,43 @@
+<ul class="nav nav-tabs row" id="MyTab">
+    <li><a href="#/!">AUTHORS</a></li>
+    <li><a href="#!book">BOOKS</a> </li>
+    <li class="active"><a href="#!genres">GENRES</a> </li>
+</ul>
+
+<div id="button">
+    <button class="btn btn-success" ng-click="createOrUpdateGenres()"><a class="a" href="#!editGenres">ADD GENRE</a></button>
+</div>
+
+<form >
+    <div class="form-group search">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search Genre" ng-model="searchGenres">
+        </div>
+    </div>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Number
+        </th>
+        <th>
+            <a ng-click="sortType ='title';sortReverse =!sortReverse">
+            Title
+                <span ng-show="sortType =='title'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                <span ng-show="sortType =='title'&& sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+        </th>
+    </tr>
+    <tr ng-repeat="genre in genres | orderBy:sortType:sortReverse | filter:searchGenres">
+        <td class="col-md-1">{{$index+1}}</td>
+        <td class="col-md-2">{{genre.title}}</td>
+        <td class="col-md-3">
+            <div class="button">
+                <button class="btn btn-danger btn-sm" ng-click="deleteGenre(genre.id)">DELETE</button>
+                <button class="btn btn-primary btn-sm"ng-click="editGenre(genre.id)">EDIT</button>
+
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,65 @@
+
+<ul class="nav nav-tabs row" id="MyTab">
+    <li><a href="#/!">AUTHORS</a></li>
+    <li class="active"><a href="#!book">BOOKS</a> </li>
+    <li><a href ="#!genres">GENRES</a> </li>
+</ul>
+<div>
+    <form >
+        <div class="form-group search">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search Book" ng-model="searchBook">
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <tr>
+            <th>Number</th>
+            <th>
+                <a ng-click="sortType ='title';sortReverse =!sortReverse">
+                Title
+                    <span ng-show="sortType =='title'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType =='title'&& sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </th>
+            <th>
+                <a ng-click="sortType ='page';sortReverse =!sortReverse">
+                Page
+                    <span ng-show="sortType =='page'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType =='page'&& sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </th>
+            <th>
+                <a ng-click="sortType ='lastname';sortReverse =!sortReverse">
+                Author
+                    <span ng-show="sortType =='lastname'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType =='lastname'&& sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </th>
+            <th>
+                <a ng-click="sortType ='genre';sortReverse =!sortReverse">
+                Ganre
+                    <span ng-show="sortType =='genre'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType =='genre'&& sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </th>
+        </tr>
+        <tr ng-repeat="book in bookInfo | orderBy:sortType:sortReverse | filter:searchBook">
+            <td class="col-md-1">{{$index+1}}</td>
+            <td class="col-md-4">{{book.title}}</td>
+            <td class="col-md-1">{{book.page}}</td>
+            <td class="col-md-2">{{book.lastname}}</td>
+            <td class="col-md-1">{{book.genre}}</td>
+            <td class="col-md-3">
+                <div class="button">
+                    <button class="btn btn-danger btn-sm" ng-click="deleteBook(book.id)">DELETE</button>
+                    <button class="btn btn-primary btn-sm"ng-click="editBook(book.id)">EDIT</button>
+
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</div>

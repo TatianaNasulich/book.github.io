@@ -1,0 +1,29 @@
+<form name="myForm">
+    <div class="form-group">
+    <label for="input_1">LastName</label>
+    <input type="text" class="form-control" id="input_1" ng-model="newauthor.lastname" name="text" ng-pattern="/^[a-zA-Zа-яА-Я]{1,30}$/" required>
+        <span class="text" ng-show="myForm.text.$error.pattern">Only letters are allowed</span><br/>
+        <span class="text" ng-show="myForm.text.$error.required">This field is required!</span><br/>
+
+        <label for="input_2">Name</label>
+        <input type="text" class="form-control" id="input_2" ng-model="newauthor.name"  name="name" ng-pattern="/^[a-zA-Zа-яА-Я]{1,30}$/" required>
+        <span class="text" ng-show="myForm.name.$error.pattern">Only letters are allowed</span><br/>
+        <span class="text" ng-show="myForm.name.$error.required">This field is required!</span><br/>
+
+        <label for="input_3">SurName</label>
+        <input type="text" class="form-control" id="input_3" ng-model="newauthor.surname" ng-pattern="/^[a-zA-Zа-яА-Я]{1,30}$/" name="SurName">
+        <span class="text" ng-show="myForm.SurName.$error.pattern">Only letters are allowed</span><br/>
+
+        <label for="input_4">Date of Birth</label>
+        <input type="date" class="form-control" id="input_4" ng-model="newauthor.data">
+
+        <input type="hidden" ng-model="newauthor.id" />
+
+
+    </div>
+
+    <button class="btn btn-success"ng-click="saveAuthor()" type="submit" ng-disabled="myForm.$invalid"><a class="a" href="#/!">Save</a></button>
+    <button class="btn btn-success"ng-click="cancel()"><a class="a" href="#/!">Cancel</a></button>
+</form>
+
+

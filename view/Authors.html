@@ -1,0 +1,57 @@
+<ul class="nav nav-tabs row" id="MyTab">
+    <li class="active"><a href="#/!">AUTHORS</a></li>
+    <li><a href="#!book">BOOKS</a> </li>
+    <li><a href="#!genres">GENRES</a> </li>
+</ul>
+
+<div class="tab-content row">
+    <div id="button">
+        <button class="btn btn-success" ng-click="createOrUpdateAuthor()"><a class="a" href="#!edit">ADD AUTHOR</a></button>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search Author" ng-model="searchAuthor">
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <tr>
+            <th>Number</th>
+            <th>
+                <a ng-click="sortType ='lastname';sortReverse =!sortReverse">
+                    LastName
+                    <span ng-show="sortType =='lastname'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType =='lastname'&& sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+
+                </a>
+            </th>
+            <th>
+                <a ng-click="sortType ='name';sortReverse =!sortReverse">
+                Name
+                    <span ng-show="sortType=='name'&&!sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType=='name'&&sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </th>
+            <th>SurName</th>
+            <th class="text">Date of Birth</th>
+            <th class="text">Option</th>
+        </tr>
+        <tr ng-repeat="author in authors | orderBy:sortType:sortReverse | filter:searchAuthor">
+            <td class="col-md-1">{{$index+1}}</td>
+            <td class="col-md-3">{{author.lastname}}</td>
+            <td class="col-md-2">{{author.name}}</td>
+            <td class="col-md-1">{{author.surname}}</td>
+            <td class="col-md-2  text">{{author.data | date: " dd/MMM/yyyy"}}</td>
+            <td class="col-md-3">
+                <div class="button">
+                    <button class="btn btn-danger btn-sm" ng-click="delete(author.id)">DELETE</button>
+                    <button class="btn btn-primary btn-sm"ng-click="edit(author.id)">EDIT</button>
+                    <button class="btn btn-success btn-sm" ng-click="createOrUpdateBook(author.id)"><a class="a" href="#!editBook">ADD BOOK</a></button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

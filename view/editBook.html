@@ -1,0 +1,21 @@
+<form name="myForm">
+    <div class="form-group">
+        <label for="input_5">Title</label>
+        <input id="input_5" type="text" class="form-control" ng-model="newBook.title" name="text" ng-pattern="/^[a-zA-Zа-яА-Я]{1,30}$/" required>
+        <span class="text" ng-show="myForm.text.$error.pattern">Only letters are allowed</span><br/>
+        <span class="text" ng-show="myForm.text.$error.required">This field is required!</span><br/>
+
+        <label for="input_6">Page</label>
+        <input id="input_6" type="number" class="form-control" ng-model="newBook.page" required name="page">
+        <span class="text" ng-show="myForm.page.$error.pattern">Only letters are allowed</span><br/>
+        <span class="text" ng-show="myForm.page.$error.required">This field is required!</span><br/>
+
+        <label for="input_7">Genre</label>
+        <select id="input_7" type="text" class="form-control" ng-model="newBook.genre" required name="genres">
+            <option ng-repeat="genre in genres" >{{genre.title}}</option>
+        </select>
+        <span class="text" ng-show="myForm.genres.$error.required">This field is required!</span><br/>
+    </div>
+    <button class="btn btn-success"ng-click="saveBook(newBook)" type="submit" ng-disabled="myForm.$invalid"><a href="#!book">Save</a></button>
+    <button class="btn btn-success"ng-click="cancel()"><a href="#!book">Cancel</a></button>
+</form>
